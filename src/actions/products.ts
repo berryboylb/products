@@ -32,7 +32,7 @@ export const getAllProducts =
         body,
         config
       );
-      console.log(res.data);
+      toast.success("Data fetched Successfully");
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: res.data,

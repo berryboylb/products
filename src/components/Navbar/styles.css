@@ -11,16 +11,16 @@ nav .inner {
   align-items: center;
   height: 10vh;
   z-index: 2;
-  /* padding-top: .5rem;
-  padding-bottom: .5rem; */
+  padding: 0;
 }
 nav .inner .logo {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+
 }
 nav .inner .logo img {
-  height: 48px;
+  height: 38px;
   -o-object-fit: cover;
   object-fit: cover;
 }
@@ -294,7 +294,7 @@ nav .inner .request a::after {
   right: 0;
   height: 100vh;
   top: 0;
-  background: #eaf3ff;
+  background: #fff;
   color: #0041ff;
   display: flex;
   flex-direction: column;

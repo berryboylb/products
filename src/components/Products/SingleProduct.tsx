@@ -79,7 +79,7 @@ const SingleProduct = ({ product }: any) => {
           product.productPictures.length > 0 &&
           product.productPictures.map((item: any) => (
             <img
-            className=" h-[300px] w-full object-cover"
+            className=" h-[300px] md:h-[250px] w-full object-cover"
               key={item.id}
               src={`https://pfp-public-productdb-api.azurewebsites.net/api/picture/${item.pictureId}`}
               alt={product.name ? product.name : "No name"}

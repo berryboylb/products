@@ -9,15 +9,7 @@ type Props = {
   filterBysearch: any;
 };
 const FreeTextSearch: React.FC<Props> = ({ filterBysearch }) => {
-  const [text, setText] = useState<string>("");
-  const queryParams: Query = {
-    page: 1,
-    pageSize: 36,
-    searchText: text,
-    productCategoryTypeIds: [],
-    complianceTypeIds: [1, 2],
-    sourceTypeIds: [],
-  };
+  //create an object as query parms
   const [formValues, setFormValues] = useState<Query>({
     page: 1,
     pageSize: 36,
@@ -27,85 +19,205 @@ const FreeTextSearch: React.FC<Props> = ({ filterBysearch }) => {
     sourceTypeIds: [],
   });
 
-  const categories = [
+  //filter by products
+  const addProduct = (arr: number[]) => {
+    //create a new array and manipulate here
+    const newArr = formValues.complianceTypeIds;
+    arr.forEach((item: number) => {
+      newArr.push(item);
+    });
+
+    setFormValues({
+      ...formValues,
+      complianceTypeIds: newArr,
+    });
+
+  };
+
+  const removeProduct = (arr: number[]) => {
+    const newArr = formValues.complianceTypeIds;
+    //get index and remove them here
+    arr.forEach((item: number) => {
+      newArr.splice(newArr.indexOf(item), 1);
+    });
+    setFormValues({
+      ...formValues,
+      complianceTypeIds: newArr,
+    });
+  };
+
+  //filter by category
+  const addCategory = (arr: number[]) => {
+    //create a new array and manipulate here
+    const newArr = formValues.productCategoryTypeIds;
+    arr.forEach((item: number) => {
+      newArr.push(item);
+    });
+
+    setFormValues({
+      ...formValues,
+      productCategoryTypeIds: newArr,
+    });
+
+  };
+
+  const removeCategory = (arr: number[]) => {
+    const newArr = formValues.productCategoryTypeIds;
+    //get index and remove them here
+    arr.forEach((item: number) => {
+      newArr.splice(newArr.indexOf(item), 1);
+    });
+    setFormValues({
+      ...formValues,
+      productCategoryTypeIds: newArr,
+    });
+  };
+
+  //filter by  authority
+  const addAuthority = (arr: number[]) => {
+    //create a new array and manipulate here
+    const newArr = formValues.sourceTypeIds;
+    arr.forEach((item: number) => {
+      newArr.push(item);
+    });
+
+    setFormValues({
+      ...formValues,
+      sourceTypeIds: newArr,
+    });
+
+  };
+
+  const removeAuth = (arr: number[]) => {
+    const newArr = formValues.sourceTypeIds;
+    //get index and remove them here
+    arr.forEach((item: number) => {
+      newArr.splice(newArr.indexOf(item), 1);
+    });
+    setFormValues({
+      ...formValues,
+      sourceTypeIds: newArr,
+    });
+    console.log(formValues);
+  };
+
+  const handleRequests = () => {
+    filterBysearch(formValues);
+  };
+
+  const clearFilters = () => {
+    setFormValues({ ...formValues, complianceTypeIds: [] });
+    setCategories((prevCatgories) =>
+      prevCatgories.map((item: List) => ({ ...item, status: false }))
+    );
+    setProduct((prevProducts) =>
+      prevProducts.map((item: List) => ({ ...item, status: false }))
+    );
+    setAuthorities((prevAuthorities) =>
+      prevAuthorities.map((item: List) => ({ ...item, status: false }))
+    );
+  };
+
+  type List = { id: number; name: string; numbers: number[]; status: boolean };
+
+  const [categories, setCategories] = useState<List[]>([
     {
       id: 1,
       name: "Building materials",
-      numbers: [1, 2],
+      numbers: [6],
+      status: false,
     },
     {
       id: 2,
       name: "Various",
-      numbers: [1, 2],
+      numbers: [8,25],
+      status: false,
     },
     {
       id: 3,
       name: "ECO design and energy labeling",
-      numbers: [1, 2],
+      numbers: [19, 20],
+      status: false,
     },
     {
       id: 4,
       name: "Elevators and cable car facilities",
-      numbers: [1, 2],
+      numbers: [55],
+      status: false,
     },
     {
       id: 5,
       name: "Electrical products",
-      numbers: [1, 2],
+      numbers: [9,7,4,5],
+      status: false,
     },
     {
       id: 6,
       name: "Fireworks and explosives",
-      numbers: [1, 2],
+      numbers: [10],
+      status: false,
     },
     {
       id: 7,
       name: "Gas products",
-      numbers: [1, 2],
+      numbers: [16],
+      status: false,
     },
     {
       id: 8,
       name: "General product safety",
-      numbers: [1, 2],
+      numbers: [1],
+      status: false,
     },
     {
       id: 9,
       name: "Toy",
-      numbers: [1, 2],
+      numbers: [2],
+      status: false,
     },
     {
       id: 10,
       name: "Machines",
-      numbers: [1, 2],
+      numbers: [11],
+      status: false,
     },
     {
       id: 11,
       name: "Metrology",
-      numbers: [1, 2],
+      numbers: [36],
+      status: false,
     },
     {
       id: 12,
       name: "Personal protection",
-      numbers: [1, 2],
+      numbers: [3],
+      status: false,
     },
-  ];
+  ]);
 
-  const product = [
+  const [product, setProduct] = useState<List[]>([
     {
       id: 1,
       name: "Hazardous products",
-      numbers: [1, 2],
+      numbers: [2],
+      status: false,
     },
     {
       id: 2,
       name: "Defective products",
-      numbers: [1, 2],
+      numbers: [1],
+      status: false,
     },
-  ];
+  ]);
 
-  const authority = [
-    { id: 1, name: "The National Security Agency", numbers: [1, 2] },
-  ];
+  const [authority, setAuthorities] = useState<List[]>([
+    {
+      id: 1,
+      name: "The National Security Agency",
+      numbers: [1],
+      status: false,
+    },
+  ]);
 
   return (
     <div className="mt-5">
@@ -119,10 +231,29 @@ const FreeTextSearch: React.FC<Props> = ({ filterBysearch }) => {
           />{" "}
           Filter By Product Type
         </h3>
-        {product.map((item) => (
+        {product.map((item: List) => (
           <p key={item.id} className="mt-2">
             {" "}
-            <input type="checkbox" /> <span>{item.name}</span>
+            <input
+              type="checkbox"
+              checked={item.status}
+              onChange={() => {
+                setProduct((prevProduct) =>
+                  prevProduct.map((list: List) =>
+                    list.id === item.id
+                      ? { ...list, status: !list.status }
+                      : list
+                  )
+                );
+                if (item.status === false) {
+                  addProduct(item.numbers);
+                } else {
+                  removeProduct(item.numbers);
+                }
+                 handleRequests();
+              }}
+            />{" "}
+            <span>{item.name}</span>
           </p>
         ))}
       </div>
@@ -136,10 +267,29 @@ const FreeTextSearch: React.FC<Props> = ({ filterBysearch }) => {
           />{" "}
           Filter by product category
         </h3>
-        {categories.map((item) => (
+        {categories.map((item: List) => (
           <p key={item.id} className="mt-2">
             {" "}
-            <input type="checkbox" /> <span>{item.name}</span>
+            <input
+              type="checkbox"
+              checked={item.status}
+              onChange={() => {
+                setCategories((prevCategories) =>
+                  prevCategories.map((list: List) =>
+                    list.id === item.id
+                      ? { ...list, status: !list.status }
+                      : list
+                  )
+                );
+                if (item.status === false) {
+                  addCategory(item.numbers);
+                } else {
+                  removeCategory(item.numbers);
+                }
+                 handleRequests();
+              }}
+            />{" "}
+            <span>{item.name}</span>
           </p>
         ))}
       </div>
@@ -152,14 +302,36 @@ const FreeTextSearch: React.FC<Props> = ({ filterBysearch }) => {
           />{" "}
           Filter by authority
         </h3>
-        {authority.map((item) => (
+        {authority.map((item: List) => (
           <p key={item.id} className="mt-2">
             {" "}
-            <input type="checkbox" /> <span>{item.name}</span>
+            <input
+              type="checkbox"
+              checked={item.status}
+              onChange={() => {
+                setAuthorities((prevAuth) =>
+                  prevAuth.map((list: List) =>
+                    list.id === item.id
+                      ? { ...list, status: !list.status }
+                      : list
+                  )
+                );
+                if (item.status === false) {
+                  addAuthority(item.numbers);
+                } else {
+                    removeAuth(item.numbers);
+                }
+                handleRequests();
+              }}
+            />{" "}
+            <span>{item.name}</span>
           </p>
         ))}
       </div>
-      <button className="mt-5 text-primary border border-primary font-sm p-2 rounded-lg ">
+      <button
+        onClick={clearFilters}
+        className="mt-5 text-primary border border-primary font-sm p-2 rounded-lg "
+      >
         Clear Filters
       </button>
 

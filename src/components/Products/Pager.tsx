@@ -50,6 +50,7 @@ const Pager: React.FC<Props> = ({ getAllProducts, currentPage, pageCount }) => {
       </button>
       {Array.from(Array(pageCount)).map((pag: any, i: number) => (
         <button
+          key={i}
           className={
             currentPage === i + 1
               ? "inline-block text-base lg:text-sm text-primary bg-background border-none font-sora cursor-pointer p-2 mx-2"

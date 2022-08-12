@@ -46,22 +46,24 @@ const Index: React.FC<Props> = ({
           ))}
         </div>
       ) : (
-        <div>
-          <h3>We did not find any products for your search on</h3>
-          <h1>"yoke"</h1>
-          <p>
+        <div className="rounded-lg bg-background p-3 mt-5 flex justify-center items-center flex-col ">
+          <h3 className="font-sora font-seconadry lg:text-sm">
+            We did not find any products for your search on
+          </h3>
+          <h1 className="font-sora font-seconadry mt-4 text-2xl lg:text-lg">""</h1>
+          <p className="font-sora font-seconadry text-center mt-4 lg:text-sm">
             Your search in the list of dangerous and defective products returned
             no results!
           </p>
-          <p>
+          <p className="font-sora font-seconadry text-center mt-4 lg:text-sm">
             This means that we have not registered any problems with the product
             you have searched for.
           </p>
-          <p>
+          <p className="font-sora font-seconadry text-center mt-4 lg:text-sm">
             Please note that this does not mean that we have approved the
             product.
           </p>
-          <p>
+          <p className="font-sora font-seconadry text-center mt-4 lg:text-sm">
             We do not approve products, but we do random checks to check the
             safety of the individual selected products.
           </p>

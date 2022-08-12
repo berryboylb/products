@@ -11,7 +11,6 @@ const Index = () => {
             {<Filter />}
           </div>
           <div className="w-[65%] md:w-full">
-           
             <Content />
           </div>
         </div>

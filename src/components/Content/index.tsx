@@ -17,16 +17,16 @@ const Index: React.FC<Props> = ({products: { results }}) => {
   const isMobile: boolean = useMediaQuery({ query: `(max-width: 768px)` });
   return (
     <div>
-      <h1 className="text-primary font-semibold font-sora text-4xl">
+      <h1 className="text-primary font-semibold font-sora text-4xl md:text-2xl">
         See dangerous and defective products
       </h1>
-      <p className="my-4 font-sora font-seconadry font-light">
+      <p className="my-4 font-sora font-seconadry text-xl md:text-sm font-light">
         When authorities in Denmark and the rest of the EU discover a dangerous
         or defective product, Danish authorities publish information about the
         dangerous and defective products.
       </p>
 
-      <p className="my-4 font-sora font-seconadry font-light">
+      <p className="my-4 font-sora font-seconadry text-xl md:text-sm font-light">
         The seriousness of errors and defects determines whether a product is
         dangerous or defective. You can be seriously injured by a dangerous
         product. A defective product has minor errors on the product or in the
@@ -106,7 +106,7 @@ const Index: React.FC<Props> = ({products: { results }}) => {
           </div>
         )}
       </div>
-      {isMobile && (<SearchFilter/>)}
+      {isMobile && <SearchFilter />}
       <Products />
       {results.length > 0 && <Pager />}
     </div>
