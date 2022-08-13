@@ -41,7 +41,7 @@ const Pager: React.FC<Props> = ({ getAllProducts, currentPage, pageCount }) => {
     getAllProducts(NextQueryParams);
   };
   return (
-    <div className="flex justify-center items-center md:block ">
+    <div className="flex justify-center items-center flex-wrap flex-row ">
       <button
         className="inline-block text-base lg:text-sm text-primary bg-background border-none font-sora cursor-pointer p-2 mx-2 opacity-50"
         onClick={previous}

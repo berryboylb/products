@@ -98,7 +98,6 @@ const FreeTextSearch: React.FC<Props> = ({ filterBysearch }) => {
       ...formValues,
       sourceTypeIds: newArr,
     });
-    console.log(formValues);
   };
 
   const handleRequests = () => {
@@ -116,6 +115,7 @@ const FreeTextSearch: React.FC<Props> = ({ filterBysearch }) => {
     setAuthorities((prevAuthorities) =>
       prevAuthorities.map((item: List) => ({ ...item, status: false }))
     );
+    filterBysearch(formValues);
   };
 
   type List = { id: number; name: string; numbers: number[]; status: boolean };
